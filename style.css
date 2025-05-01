@@ -1,0 +1,472 @@
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    
+    :root {
+      --neon-green: #39ff14;
+      --neon-pink: #f0f;
+      --neon-blue: #0ff;
+      --dark-bg: #000;
+    }
+    
+  
+    #loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s;
+    }
+    
+    #loader.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loading-text {
+      color: var(--neon-green);
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .progress-bar {
+      width: 300px;
+      height: 20px;
+      border: 2px solid var(--neon-blue);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 100%;
+      background: var(--neon-green);
+      width: 0%;
+      transition: width 0.5s;
+    }
+    
+  
+    body {
+      background: black;
+      color: var(--neon-green);
+      font-family: 'Press Start 2P', monospace;
+      margin: 0;
+      padding: 0;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="4" fill="%2339ff14"/></svg>') 8 8, auto;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem;
+      border: 4px double var(--neon-pink);
+      background: linear-gradient(90deg, #000, #111);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s, transform 1s;
+    }
+    
+    .container.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    header, footer {
+      text-align: center;
+      padding: 1rem 0;
+      border-bottom: 2px dashed var(--neon-blue);
+    }
+    
+    h1 {
+      color: var(--neon-pink);
+      text-shadow: 3px 3px var(--neon-blue);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+        text-shadow:
+          0 0 5px var(--neon-blue),
+          0 0 10px var(--neon-blue),
+          0 0 20px var(--neon-blue),
+          0 0 40px var(--neon-pink),
+          0 0 60px var(--neon-pink);
+      }
+      20%, 24%, 55% {
+        opacity: 0.3;
+        text-shadow: none;
+      }
+    }
+    
+    .glitch {
+      animation: flicker 1.5s infinite;
+      position: relative;
+    }
+    
+    .glitch::before,
+    .glitch::after {
+      content: "👾 SHUHAIB KT 👾";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00de;
+      clip: rect(24px, 550px, 90px, 0);
+      animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+    
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #0ff;
+      clip: rect(85px, 550px, 140px, 0);
+      animation: glitch-anim2 2.5s infinite linear alternate-reverse;
+    }
+    
+    @keyframes glitch-anim {
+      0% { clip: rect(24px, 550px, 90px, 0); }
+      20% { clip: rect(62px, 550px, 130px, 0); }
+      40% { clip: rect(58px, 550px, 14px, 0); }
+      60% { clip: rect(10px, 550px, 5px, 0); }
+      80% { clip: rect(28px, 550px, 136px, 0); }
+      100% { clip: rect(98px, 550px, 19px, 0); }
+    }
+    
+    @keyframes glitch-anim2 {
+      0% { clip: rect(65px, 550px, 119px, 0); }
+      20% { clip: rect(82px, 550px, 73px, 0); }
+      40% { clip: rect(125px, 550px, 18px, 0); }
+      60% { clip: rect(18px, 550px, 136px, 0); }
+      80% { clip: rect(95px, 550px, 144px, 0); }
+      100% { clip: rect(56px, 550px, 67px, 0); }
+    }
+    
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+      border-top: 2px dashed var(--neon-blue);
+      border-bottom: 2px dashed var(--neon-blue);
+      padding: 0.5rem 0;
+    }
+    
+    nav a {
+      color: var(--neon-green);
+      text-decoration: none;
+      position: relative;
+      padding: 0.25rem 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    nav a::before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--neon-pink);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: var(--neon-pink);
+      transform: scale(1.05);
+    }
+    
+    nav a:hover::before {
+      width: 100%;
+    }
+    
+    section {
+      margin: 2rem 0;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    
+    section.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    h2 {
+      position: relative;
+      display: inline-block;
+      padding-left: 0.5rem;
+    }
+    
+    h2::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 0;
+      height: 100%;
+      width: 5px;
+      background: var(--neon-pink);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+    
+    ul {
+      list-style-type: none;
+      padding-left: 1.5rem;
+    }
+    
+    ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    ul li::before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      color: var(--neon-blue);
+    }
+    
+   
+    .skills-list li {
+      padding-left: 0;
+      margin-bottom: 1.5rem;
+    }
+    
+    .skills-list li::before {
+      display: none;
+    }
+    
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+    }
+    
+    .skill-name {
+      color: var(--neon-pink);
+      font-weight: bold;
+    }
+    
+    .skill-level {
+      color: var(--neon-blue);
+      font-size: 0.7rem;
+      animation: blink 1.5s infinite alternate;
+    }
+    
+    @keyframes blink {
+      from { opacity: 0.7; }
+      to { opacity: 1; }
+    }
+    
+    .skill-bar {
+      width: 100%;
+      height: 15px;
+      background: #111;
+      margin-top: 0.5rem;
+      border: 1px solid var(--neon-blue);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .skill-progress {
+      height: 100%;
+      background-image: linear-gradient(90deg, var(--neon-green), var(--neon-blue), var(--neon-green));
+      background-size: 200% 100%;
+      width: 0%;
+      transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: shimmer 2s infinite linear;
+      position: relative;
+    }
+    
+    .skill-progress::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      height: 100%;
+      background: white;
+      opacity: 0.7;
+      filter: blur(1px);
+      animation: scanline 1.5s ease-out infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    
+    @keyframes scanline {
+      0% { transform: translateX(0); opacity: 0.7; }
+      100% { transform: translateX(-100px); opacity: 0; }
+    }
+    
+    a {
+      color: var(--neon-green);
+      text-decoration: underline;
+      transition: all 0.3s;
+    }
+    
+    a:hover {
+      color: var(--neon-pink);
+      text-shadow: 0 0 5px var(--neon-pink);
+    }
+    
+    footer {
+      border-top: 2px dashed var(--neon-blue);
+      margin-top: 2rem;
+    }
+    
+   
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--neon-blue);
+      border: 1px solid var(--neon-pink);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--neon-green);
+    }
+    
+    
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+    
+    .tool-item {
+      border: 2px solid var(--neon-blue);
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    
+    .tool-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 10px var(--neon-pink);
+    }
+    
+    
+    #terminal {
+      border: 2px solid var(--neon-green);
+      padding: 1rem;
+      position: relative;
+      margin-top: 1.5rem;
+    }
+    
+    #terminal::before {
+      content: "> cyberhacker.exe";
+      position: absolute;
+      top: -12px;
+      left: 10px;
+      background: black;
+      padding: 0 0.5rem;
+      color: var(--neon-blue);
+      font-size: 0.8rem;
+    }
+    
+    .typing {
+      border-right: 0.15em solid var(--neon-green);
+      white-space: nowrap;
+      overflow: hidden;
+      margin: 0 auto;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+    
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--neon-green) }
+    }
+    
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+    
+ 
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+  
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid var(--neon-green);
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: 
+        typing 3s steps(40, end),
+        blink-caret .75s step-end infinite;
+    }
+    
+  
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.3) 50%
+      );
+      background-size: 100% 4px;
+      z-index: 9998;
+      pointer-events: none;
+      opacity: 0.1;
+    }
