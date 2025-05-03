@@ -1,136 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SHUHAIB KT | Retro Portfolio</title>
-  <meta name="title" content="SHUHAIB KT | Retro Portfolio">
-  <meta name="description" content="The retro-themed portfolio of SHUHAIB KT — Flutter Developer, Solidity Enthusiast, and Creator. Check out my projects and skills.">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div id="loader">
-    <div class="loading-text">LOADING SHUHAIB.EXE...</div>
-    <div class="progress-bar">
-      <div class="progress"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHUHAIB KT</title>
+    <meta name="title" content="SHUHAIB KT | Retro Portfolio" />
+    <meta
+      name="description"
+      content="The portfolio of SHUHAIB KT — Flutter Developer, Solidity Enthusiast, and Creator. Check out my projects and skills."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      let audioContext;
+      let isSoundEnabled = true;
+      document.addEventListener("click", initAudio, { once: true });
+
+      function initAudio() {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+
+      function playKeySound() {
+        if (!audioContext || !isSoundEnabled) return;
+
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        osc.frequency.value = 440 + Math.random() * 220;
+
+        gain.gain.setValueAtTime(0.025, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.08
+        );
+
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+
+        osc.start();
+        osc.stop(audioContext.currentTime + 0.08);
+      }
+
+      function playEnterSound() {
+        if (!audioContext || !isSoundEnabled) return;
+
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        osc.frequency.value = 330;
+
+        gain.gain.setValueAtTime(0.04, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.15
+        );
+
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+
+        osc.start();
+        osc.stop(audioContext.currentTime + 0.15);
+      }
+
+      function playErrorSound() {
+        if (!audioContext || !isSoundEnabled) return;
+
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.frequency.value = 220;
+        osc.type = "sawtooth";
+
+        gain.gain.setValueAtTime(0.05, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.3
+        );
+
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+
+        osc.start();
+        osc.stop(audioContext.currentTime + 0.3);
+      }
+    </script>
+  </head>
+
+  <body>
+    <canvas id="matrix"></canvas>
+
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="terminal-title">SHUHAIB KT</div>
+        <div class="terminal-controls">
+          <span class="minimize-btn">_</span>
+          <span class="close-btn">×</span>
+        </div>
+      </div>
+      <div class="terminal-content">
+        <div class="terminal-output" id="output">
+          <p class="welcome-text">Welcome to Portfolio v1.0</p>
+          <p>
+            Type <span class="command">help</span> to see available commands.
+          </p>
+        </div>
+        <div class="terminal-input-line">
+          <span class="prompt">guest@wolf:~$</span>
+          <input type="text" id="terminal-input" autofocus autocomplete="off" />
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="scanlines"></div>
-  <canvas id="matrix" class="matrix-bg"></canvas>
-  
-  <div class="container">
-    <header>
-      <p class="glitch">👾</p> <h1>SHUHAIB KT </h1> <p class="glitch">👾</p>
-      <p class="typewriter">Cyber Security | Flutter Developer | Web3</p>
-    </header>
-    
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#certificates">Certificates</a>
-      <a href="#tools">Tech Tools</a>
-      <a href="#writing">Writing</a>
-      <a href="#fun">Fun</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    
-    <main>
-      <section id="about">
-        <h2>🦾 About Me</h2>
-        <div id="terminal">
-          <p class="typing">I build secure and clean Flutter apps, manage state with Riverpod, and vibe with 80s neon aesthetics and One Piece marathons.</p>
-        </div>
-      </section>
-      
-      <section id="skills">
-        <h2>🎯 Skills</h2>
-        <ul class="skills-list">
-          <li>
-            <div class="skill-label">
-              <span class="skill-name">Flutter</span>
-              <span class="skill-level">EXPERT</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" data-width="90"></div>
-            </div>
-          </li>
-          <li>
-            <div class="skill-label">
-              <span class="skill-name">Dart</span>
-              <span class="skill-level">ADVANCED</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" data-width="85"></div>
-            </div>
-          </li>
-          <li>
-            <div class="skill-label">
-              <span class="skill-name">Node.js</span>
-              <span class="skill-level">PROFICIENT</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" data-width="75"></div>
-            </div>
-          </li>
-          <li>
-            <div class="skill-label">
-              <span class="skill-name">Solidity</span>
-              <span class="skill-level">INTERMEDIATE</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" data-width="65"></div>
-            </div>
-          </li>
-        </ul>
-      </section>
-      
-      <section id="experience">
-        <h2>💼 Experience</h2>
-        <p>Currently working as a Flutter Developer.</p>
-      </section>
-      
-      <section id="certificates">
-        <h2>📜 Certificates</h2>
-        <ul>
-          <li>IP Addressing Basics – Cybrary</li>
-          <li>Network Basics – Cybrary</li>
-        </ul>
-      </section>
-      
-      <section id="tools">
-        <h2>🛠️ Tech Tools</h2>
-        <div class="tools-grid">
-          <div class="tool-item">VS Code</div>
-          <div class="tool-item">Git</div>
-          <div class="tool-item">Android Studio</div>
-          <div class="tool-item">Postman</div>
-          <div class="tool-item">Wireshark</div>
-          <div class="tool-item">GNS3</div>
-        </div>
-      </section>
-      
-      <section id="writing">
-        <h2>✍️ Writing</h2>
-        <p>Read my articles on Medium: <a href="https://shuhaibkt02.medium.com/" target="_blank">shuhaibkt02.medium.com</a></p>
-      </section>
-      
-      <section id="fun">
-        <h2>💾 Fun Zone</h2>
-        <p>Just a crazy retro fan, neon hoarder, and proud Straw Hat Pirate ⚓🍖</p>
-      </section>
-      
-      <section id="contact">
-        <h2>📟 Contact</h2>
-        <p>Email: <a href="mailto:mail@shuhaibkt.xyz">mail@shuhaibkt.xyz</a></p>
-        <p>GitHub: <a href="https://github.com/shuhaibkt02" target="_blank">shuhaib kt</a></p>
-      </section>
-    </main>
-    
-    <footer>
-      <p>© 199X–2025 SHUHAIB KT </p>
-    </footer>
-  </div>
-  <script src="script.js"></script>
-</body>
+
+    <script src="scipt.js"></script>
+  </body>
 </html>
