@@ -4,92 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SHUHAIB KT | Flutter & Blockchain Developer | Portfolio</title>
-<meta 
-  name="title" 
-  content="SHUHAIB KT — Flutter & Solidity Developer | Web3 Portfolio" 
-/>
-<meta 
-  name="description" 
-  content="Professional portfolio of SHUHAIB KT: Flutter mobile developer, Solidity smart contract engineer, and Web3 enthusiast. Explore my projects, open-source contributions, and technical expertise in blockchain and cross-platform apps." 
-/>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta
+      name="title"
+      content="SHUHAIB KT — Flutter & Solidity Developer | Web3 Portfolio"
+    />
+    <meta
+      name="description"
+      content="Professional portfolio of SHUHAIB KT: Flutter mobile developer, Solidity smart contract engineer, and Web3 enthusiast. Explore my projects, open-source contributions, and technical expertise in blockchain and cross-platform apps."
+    />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
-    <script>
-      let audioContext;
-      let isSoundEnabled = true;
-      document.addEventListener("click", initAudio, { once: true });
-
-      function initAudio() {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
-      function playKeySound() {
-        if (!audioContext || !isSoundEnabled) return;
-
-        const osc = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-
-        osc.frequency.value = 440 + Math.random() * 220;
-
-        gain.gain.setValueAtTime(0.025, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          audioContext.currentTime + 0.08
-        );
-
-        osc.connect(gain);
-        gain.connect(audioContext.destination);
-
-        osc.start();
-        osc.stop(audioContext.currentTime + 0.08);
-      }
-
-      function playEnterSound() {
-        if (!audioContext || !isSoundEnabled) return;
-
-        const osc = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-
-        osc.frequency.value = 330;
-
-        gain.gain.setValueAtTime(0.04, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          audioContext.currentTime + 0.15
-        );
-
-        osc.connect(gain);
-        gain.connect(audioContext.destination);
-
-        osc.start();
-        osc.stop(audioContext.currentTime + 0.15);
-      }
-
-      function playErrorSound() {
-        if (!audioContext || !isSoundEnabled) return;
-
-        const osc = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        osc.frequency.value = 220;
-        osc.type = "sawtooth";
-
-        gain.gain.setValueAtTime(0.05, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          audioContext.currentTime + 0.3
-        );
-
-        osc.connect(gain);
-        gain.connect(audioContext.destination);
-
-        osc.start();
-        osc.stop(audioContext.currentTime + 0.3);
-      }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   </head>
-
   <body>
-    <canvas id="matrix"></canvas>
+    <div class="desktop-icons">
+      <div class="desktop-icon" id="desktop-icon">
+        <svg
+          class="icon-terminal"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="2"
+            y="4"
+            width="20"
+            height="16"
+            rx="2"
+            stroke="#0f0"
+            stroke-width="2"
+          />
+          <path
+            d="M6 10L10 14L6 18"
+            stroke="#0f0"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12 18H18"
+            stroke="#0f0"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+        <div class="icon-text">Terminal</div>
+      </div>
+    </div>
 
     <div class="terminal">
       <div class="terminal-header">
@@ -107,12 +70,12 @@
           </p>
         </div>
         <div class="terminal-input-line">
-          <span class="prompt">guest@wolf:~$</span>
+          <span class="prompt">guest@matrix:~$</span>
           <input type="text" id="terminal-input" autofocus autocomplete="off" />
         </div>
       </div>
     </div>
 
-    <script src="./script.js"></script> 
+    <script src="scipt.js"></script>
   </body>
 </html>
